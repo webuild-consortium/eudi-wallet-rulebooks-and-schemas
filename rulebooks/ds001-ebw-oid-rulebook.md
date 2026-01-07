@@ -45,8 +45,6 @@ This Rulebook is structured as follows:
 
 ### 1.3 Keywords
 
-*The following are the recommended keywords. Modify if necessary*
-
 This document uses the capitalised keywords 'SHALL', 'SHOULD' and 'MAY' as specified in [RFC 2119], i.e. to indicate requirements, recommendations and options specified in this document.
 
 In addition, 'must' (non-capitalised) is used to indicate an external constraint, i.e. a requirement that is not mandated by this document, but, for instance, by an external document. The word 'can' indicates a capability, whereas other words, such as 'will', and 'is' or 'are' are intended as statements of fact.
@@ -68,19 +66,6 @@ For more terminology, please refer to Article 3 of the legislation draft [COM 20
 
 ## 2 Attestation attributes and metadata
 
-*This section is used for defining all attributes that an
-attestation of the defined type may contain. In this section
-the attributes SHALL be defined in an encoding-independent manner (see ARB_06 in [Topic 12]). 
-Each attribute can be mandatory, optional, or conditional, 
-and it SHALL be specified in the corresponding section (see ARB_09 in [Topic 12]).*
-
-*When attributes are defined, referring to attributes that
-already exist in a catalogue of attestation attributes 
-SHOULD be considered (see ARB_07 in [Topic 12]).*
-
-*[Topic 12] of Annex 2 of the ARF defines the following High-Level Requirements with
-respect to the Attestation Rulebooks*
-
 **Requirements for QEAA**
 * An attribute as meant in Annex V point a) of the [European Digital Identity Regulation] SHALL be included (see ARB_11 in [Topic 12]). See also [Section 2.1](#21-introduction).
 * One or more attributes or metadata representing the set of data meant in Annex V point b) of the [European Digital Identity Regulation] SHALL be included (see ARB_13 in [Topic 12])
@@ -97,13 +82,6 @@ indicate at least the URL at which a machine-readable version of the trust ancho
 * one or more attributes or metadata representing the location meant in Annex VII point h) of the [European Digital Identity Regulation] SHALL be included. This location SHALL 
 indicate at least the URL at which a machine-readable version of the qualified certificate that signed the PuB-EAA can be found or looked up. (see ARB_20 in [Topic 12]) 
 
-**Requirements for non-qualified EAA**
-* An attribute indicating that the attestation is an EAA should be included (see ARB_12 in [Topic 12]). See also [Section 2.1](#21-introduction).
-* Οne or more attributes or metadata representing the set of data meant in Annex V point b) of the [European Digital Identity Regulation] SHALL be included (see ARB_15 in [Topic 12]).
-* Οne or more attributes representing the set of data meant in Annex V point c) of the [European Digital Identity Regulation] SHOULD be included (see ARB_17 in [Topic 12])
-* Οne or more attributes representing the set of data meant in Annex V point e) of the [European Digital Identity Regulation] SHOULD be defined (see ARB_19 in [Topic 12]).
- * Οne or more attributes or metadata representing the location at which a machine-readable version of the trust anchor to be used for verifying the EAA can be found or
-looked up SHOULD be defined. What this location indicates precisely is dependent on the nature of the mechanism used for distributing trust anchors, detailed in section 5 (see ARB_21 in [Topic 12])
 
 ### 2.1 Introduction
 
@@ -113,11 +91,7 @@ This chapter defines the legally required minimum attributes, as well as optiona
 
 **In the WE BUILD context**, EBW‑OIDs can be issued for any EBW owner, provided the attributes are derived from authentic sources notified to the Commission (EBW Article 8(2)). 
 
-All data identifiers and definitions in this chapter are independent of any
-encoding used. Consequently,
-
-- the data identifiers in these tables are not necessarily the same as the claim
-  names used for EBW‑OID complying with [SD-JWT VC]. [Chapter 3.2](#32-sd-jwt-vc-based-encoding) specifies the claim names to be
+All data identifiers and definitions in this chapter are independent of any encoding used. Consequently, the data identifiers in these tables are not necessarily the same as the claim names used for EBW‑OID complying with [SD-JWT VC]. [Chapter 3.2](#32-sd-jwt-vc-based-encoding) specifies the claim names to be
   used for such EBW‑OID.
 
 
@@ -134,19 +108,19 @@ encoding used. Consequently,
 
 ### 2.4 Mandatory metadata 
 
-| **Data Identifier**         | **Definition**                                                                                                                                                                                                         |
-|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| issuing_authority           | Name of the administrative authority or qualified trust service provider that issued the EBW‑OID, or the ISO 3166‑1 alpha‑2 of the Member State where applicable.                                                      |
-| issuing_country             | Alpha‑2 country code, as specified in ISO 3166‑1, of the country or territory of the provider of the EBW‑OID.                                                                                                          |
-| attestation_legal_category  | The type of attestation category.                                                                                                                                                                                      |
+| **Data Identifier**         | **Definition**                                                                                                                                                    |
+|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| issuing_authority           | Name of the administrative authority or qualified trust service provider that issued the EBW‑OID, or the ISO 3166‑1 alpha‑2 of the Member State where applicable. |
+| issuing_country             | Alpha‑2 country code, as specified in ISO 3166‑1, of the country or territory of the provider of the EBW‑OID.                                                     |
+| attestation_legal_category  | The type of attestation category. (Pub-EAA/QEAA)                                                                                                                  |
 
 
 ### 2.5 Optional metadata
 
-| **Data Identifier**  | **Definition**                                                                                                                                                                                   |
-|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| location_status      | The location of validity status information on the EBW‑OID used for revocation/suspension checks.                                                                                                |
-| expiry_date          | Administrave Date when the EBW‑OID will expire, following ISO 8601 **Clarification** This is in case the administrative validity is different from the technical expiry date of the credential.  |
+| **Data Identifier**  | **Definition**                                                                                                                                                                                  |
+|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| location_status      | The location of validity status information on the EBW‑OID used for revocation/suspension checks.                                                                                               |
+| expiry_date          | Administrave Date when the EBW‑OID will expire, following ISO 8601 **Clarification** This is in case the administrative validity is different from the technical expiry date of the credential. |
 
 ### 2.6 Additional conditional attributes specified in this Rulebook
 
@@ -260,21 +234,20 @@ Relying Party obligations:
 - Verify the SD‑JWT VC signature and ensure the issuer is an authorised public body by validating the qualified certificate chain against the appropriate QTSP Trusted List (see Chapter 5).
 - Check freshness: validate `exp` and consider `iat`.
 - Apply revocation/status checks as defined in Chapter 6.
-- Where the transaction requires binding to a natural person representative, the RP SHOULD request and verify a PID for the representative in addition to the EBW‑OID, as per service policy and ARF Topic 12 (ARB_27).
+- Where the transaction requires binding to a natural person representative, the RP SHOULD request and verify a PID for the representative in addition to the EBW‑OID.
 
 Presentation requirements:
 - Selective disclosure is NOT permitted for the core EBW‑OID attributes; the holder presents EBW‑OID atomically.
 
 Transactional data:
-- The RP MAY keep minimal logs necessary to demonstrate lawful processing and verification events; no additional transaction‑specific attributes are introduced by LPID.
-  No additional transaction‑specific attributes are introduced by EBW‑OID.
+- The RP MAY keep minimal logs necessary to demonstrate lawful processing and verification events; no additional transaction‑specific attributes are introduced by EBW-OID. No additional transaction‑specific attributes are introduced by EBW‑OID.
 
 ## 5 Trust anchors
 
 TODO: WE BUILD WP4 - Trust Registry Infrastucture / Architecture group? 
 
 
-For EBW‑OID as an EAA/QEAA, Relying Parties SHALL verify the EBW‑OID using the issuer credential:
+For EBW‑OID as an PUB-EAA/QEAA, Relying Parties SHALL verify the EBW‑OID using the issuer credential:
 - Public‑body issuer certificate issued by a Qualified Trust Service Provider (QTSP) when provided by or on behalf of a public sector body responsible for an authentic source;
 - Qualified electronic attestation of attributes when provided by a QTSP; or
 - Commission issuance for Union entities (having the same legal effect per EBW Article 8(4)).
@@ -298,7 +271,7 @@ TODO: WE BUILD WP4 - EBW owner identification data revocation task 5
 EBW‑OID is expected to be long‑lived but revocable. This Rulebook adopts the following policy:
 - EBW‑OID SHALL include `exp`. Validity longer than 24 hours is permitted; therefore, revocation MUST be supported.
 - When the Commission specifies the Attestation Status List (ASL) or Attestation Revocation List (ARL) mechanism, EBW‑OID Providers SHALL implement that mechanism.
-- Until such mechanisms are specified, EBW‑OID Providers SHALL publish revocation status via a machine‑readable endpoint referenced from the issuer’s policy, and Relying Parties SHALL implement status checking per that policy.
+- Until such mechanisms are specified, EBW‑OID Providers SHALL publish revocation status via a machine‑readable endpoint referenced from the issuer’s policy, and Relying Parties SHALL implement status checking per that policy. Issuers SHOULD implement the [oauth status list](https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/) until otherwise specified. 
 
 Relying Party checks:
 - Validate `exp` not in the past.
@@ -314,14 +287,8 @@ Relying Party checks:
 | **Item Reference**                     | **Standard name/details**                                                                                                                                                                                                                                                                           |
 |----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [European Digital Identity Regulation] | [Regulation (EU) 2024/1183](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401183) of the European Parliament and of the Council of 11 April 2024 amending Regulation (EU) No 910/2014 as regards establishing the European Digital Identity Framework                            |
-| [HAIP]                                 | Yasuda, K. *et al,* OpenID4VC High Assurance Interoperability Profile, OpenId Foundation, Version draft-03                                                                                                                                                                                          |
-| [IANA-JWT-Claims]                      | IANA JSON Web Token Claims Registry. Available: <https://www.iana.org/assignments/jwt/jwt.xhtml>                                                                                                                                                                                                    |
 | [ISO/IEC 18013-5]                      | ISO/IEC 18013-5, Personal identification --- ISO-compliant driving licence - Part 5: Mobile driving licence (mDL) application, First edition, 2021-09                                                                                                                                               |
-| [OIDC]                                 | Sakimura, N. et al., "OpenID Connect Core 1.0", OpenID Foundation. Available: <https://openid.net/specs/openid-connect-core-1_0.html>                                                                                                                                                               |
-| [RFC 3339]                             | RFC 3339  - Date and Time on the Internet: Timestamps, G. Klyne et al., July 2002                                                                                                                                                                                                                   |
-| [RFC 8610]                             | RFC 8610  - Concise Data Definition Language (CDDL): A Notational Convention to Express Concise Binary Object Representation (CBOR) and JSON Data Structures, H. Birkholz et al., June 2019                                                                                                         |
-| [RFC 8943]                             | RFC 8943  - Concise Binary Object Representation (CBOR) Tags for Date, M. Jones et al., November 2020                                                                                                                                                                                               |
-| [RFC 8949]                             | RFC 8949 - Concise Binary Object Representation (CBOR), C. Bormann et al., December 2020                                                                                                                                                                                                            |
+| [OIDC]                                 | Sakimura, N. et al., "OpenID Connect Core 1.0", OpenID Foundation. Available: <https://openid.net/specs/openid-connect-core-1_0.html>                                                                                                                                                               | |
 | [SD-JWT VC]                            | SD-JWT-based Verifiable Credentials (SD-JWT VC). Available: <https://datatracker.ietf.org/doc/draft-ietf-oauth-sd-jwt-vc/>, version draft-ietf-oauth-sd-jwt-vc-09                                                                                                                                   |
 | [Topic 7]                              | ARF Annex 2 - Topic 7 - Attestation revocation and revocation checking Available: <https://eu-digital-identity-wallet.github.io/eudi-doc-architecture-and-reference-framework/latest/annexes/annex-2/annex-2-high-level-requirements/#a237-topic-7-attestation-revocation-and-revocation-checking>  |
 | [Topic 10]                             | ARF Annex 2 - Topic 10 - Issuing a PID or attestation to a Wallet Unit: <https://eu-digital-identity-wallet.github.io/eudi-doc-architecture-and-reference-framework/latest/annexes/annex-2/annex-2-high-level-requirements/#a2310-topic-10-issuing-a-pid-or-attestation-to-a-wallet-unit>           |
