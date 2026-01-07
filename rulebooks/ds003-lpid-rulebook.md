@@ -336,7 +336,7 @@ Primary use cases:
 
 Relying Party obligations:
 - Verify the SD‑JWT VC signature and ensure the issuer is an authorised public body by validating the qualified certificate chain against the appropriate QTSP Trusted List (see Chapter 5).
-- Check freshness: validate `exp` and consider `iat` and policy‑defined maximum age.
+- Check freshness: validate `exp` and consider `iat`.
 - Apply revocation/status checks as defined in Chapter 6.
 - Where the transaction requires binding to a natural person representative, the RP SHOULD request and verify a PID for the representative in addition to the LPID, as per service policy and ARF Topic 12 (ARB_27).
 

@@ -16,7 +16,7 @@
     },
     "id": {
       "type": "string",
-      "description": "Cross-border unique identifier per EBW Article 9. In WE BUILD context, EUID if available; else the Commission-specified UID.",
+      "description": "EUID where available, otherwise a similar constructed, unique per issuer identifier.",
       "examples": [
         "NOFOR.123456789"
       ]
@@ -38,7 +38,7 @@
     },
     "date_of_expiry": {
       "type": "string",
-      "description": "Administrative expiry date in YYYY-MM-DD format.",
+      "description": "Administrative expiry date following ISO 8601." ,
       "format": "date",
       "examples": [
         "2027-12-31"
@@ -141,7 +141,6 @@
     "id",
     "name",
     "attestation_legal_category",
-    "date_of_expiry",
     "issuing_authority",
     "issuing_country"
   ]

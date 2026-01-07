@@ -27,9 +27,9 @@ Alternative: Contact workpackage 4 in WE BUILD, or/and the author of the documen
 The European Business Wallet – Owner Identification Data (EBW‑OID) attestation defines a legally defined, common set of data that uniquely identifies an EBW owner (economic operator or public sector body) within the European Business Wallets (EBW) ecosystem. Its purpose is to provide a harmonised, interoperable attestation that enables Relying Parties and business wallets to establish trust in an EBW owner entity. EBW‑OID focuses on the core identifiers needed across national and cross‑border use cases.
 
 Primary objectives:
-- Provide a cross‑border unique identifier for the EBW owner (EUID where applicable, or a Commission‑specified unique identifier) and the official name of the EBW owner.
+- Provide a cross‑border unique identifier for the EBW owner (In **WEBUILD** EUID where available, otherwise a similar constructed, unique per issuer identifier. <Countrycode ISO 3166-1 alpha-2><Issuer-reference>.<unique identificator> eks. SEBOLREG.123456789 ) and the official name of the EBW owner.
 - Support verification of issuer authenticity and attestation integrity based on the EBW proposal (Articles 8–9) and ARF trust requirements.
-- Enable consistent consumption in EBW and EUDI flows as Electronic Attestations of Attributes (EAA/QEAA) aligned with applicable implementing acts.
+- Enable consistent consumption in EBW and EUDI flows as Electronic Attestations of Attributes (QEAA/Pub-EAA) aligned with applicable implementing acts.
 
 
 ### 1.2 Document structure
@@ -124,29 +124,29 @@ encoding used. Consequently,
 
 ### 2.2 Mandatory attributes per EBW proposal (Articles 8–9)
 
-| **Data Identifier**  | **Definition**                                                                                                                                                          |
-|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| name                 | The official name of the EBW owner (economic operator or public sector body), from the relevant register or official record.                                            |
-| id                   | The relevant unique identifier attributed in accordance with Article 9 (**WEBUILD specific** EUID where available, otherwise a similar constructed, unique identifier). |
+| **Data Identifier**  | **Definition**                                                                                                                                                                                                                                                                             |
+|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| name                 | The official name of the EBW owner (economic operator or public sector body), from the relevant register or official record.                                                                                                                                                               |
+| id                   | The relevant unique identifier attributed in accordance with Article 9 of EWB (**WEBUILD specific** EUID where available, otherwise a similar constructed, unique per issuer identifier. <Countrycode ISO 3166-1 alpha-2><Issuer-reference>.<unique identificator> eks. SEBOLREG.123456789 |
 
 
 
 
 ### 2.4 Mandatory metadata 
 
-| **Data Identifier**         | **Definition**                                                                                                                                                    |
-|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| expiry_date                 | Date (and if possible time) when the EBW‑OID will expire (per attestation validity).                                                                              |
-| issuing_authority           | Name of the administrative authority or qualified trust service provider that issued the EBW‑OID, or the ISO 3166‑1 alpha‑2 of the Member State where applicable. |
-| issuing_country             | Alpha‑2 country code, as specified in ISO 3166‑1, of the country or territory of the provider of the EBW‑OID.                                                     |
-| attestation_legal_category  | The type of attestation category.                                                                                                                                 |
+| **Data Identifier**         | **Definition**                                                                                                                                                                                                         |
+|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| issuing_authority           | Name of the administrative authority or qualified trust service provider that issued the EBW‑OID, or the ISO 3166‑1 alpha‑2 of the Member State where applicable.                                                      |
+| issuing_country             | Alpha‑2 country code, as specified in ISO 3166‑1, of the country or territory of the provider of the EBW‑OID.                                                                                                          |
+| attestation_legal_category  | The type of attestation category.                                                                                                                                                                                      |
 
 
 ### 2.5 Optional metadata
 
-| **Data Identifier** | **Definition**                                                                                     |
-|---------------------|----------------------------------------------------------------------------------------------------|
-| location_status     | The location of validity status information on the EBW‑OID used for revocation/suspension checks.  |
+| **Data Identifier**  | **Definition**                                                                                                                                                                                   |
+|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| location_status      | The location of validity status information on the EBW‑OID used for revocation/suspension checks.                                                                                                |
+| expiry_date          | Administrave Date when the EBW‑OID will expire, following ISO 8601 **Clarification** This is in case the administrative validity is different from the technical expiry date of the credential.  |
 
 ### 2.6 Additional conditional attributes specified in this Rulebook
 
@@ -168,16 +168,16 @@ Verifiable Credential Type (vct): `uri:eu.ebw.oid.1`
 
 Claim names and disclosure policy (aligned with Chapter 2 attributes):
 
-| Data Identifier             | Attribute Identifier        | Encoding format | Reference/Notes                                                                                                                              |
-|-----------------------------|-----------------------------|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------|
-| id                          | id                          | string          | Cross‑border unique identifier per EBW Article 9. In WE BUILD context, EUID if available; else the Commission‑specified UID.                 |
-| name                        | name                        | string          | Official name from relevant register or official record.                                                                                     |
-| attestation_legal_category  | attestation_legal_category  | string          | The type of attestation category. Can be one of QEAA or PUB-EAA                                                                              | 
-| expiry_date                 | date_of_expiry              | string          | ISO 8601-1 [ISO8601‑1] YYYY‑MM‑DD format, as defined in Section 5.4.4.2 of [EKYC Schema]                                                     |
-| issuing_authority           | issuing_authority           | string          | Name of the administrative authority, Commission (for Union entities), or QTSP issuing the EAA/QEAA; or ISO 3166‑1 alpha‑2 where applicable. |
-| issuing_country             | issuing_country             | string          | ISO 3166‑1 alpha‑2 code of the provider’s country/territory.                                                                                 |
-| location_status             | status                      | JSON Object     | See [Section 3.2.1](#321-attribute-status).                                                                                                  |
-| trust_anchor                | trust_anchor                | string (URI)    | URL of machine‑readable trust anchor as per Annex V/VII point h).                                                                            |
+| Data Identifier             | Attribute Identifier        | Encoding format | Reference/Notes                                                                                                                                                                                                                                         |
+|-----------------------------|-----------------------------|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| id                          | id                          | string          | Cross‑border unique identifier per EBW Article 9. In **WEBUILD** EUID where available, otherwise a similar constructed, unique per issuer identifier. <Countrycode ISO 3166-1 alpha-2><Issuer-reference>.<unique identificator> eks. SEBOLREG.123456789 |
+| name                        | name                        | string          | Official name from relevant register or official record.                                                                                                                                                                                                |
+| attestation_legal_category  | attestation_legal_category  | string          | The type of attestation category. Can be one of QEAA or PUB-EAA                                                                                                                                                                                         | 
+| expiry_date                 | date_of_expiry              | string          | Addministrative expiry date given on ISO 8601-1  date fomat. YYYY‑MM‑DD ]                                                                                                                                                                               |
+| issuing_authority           | issuing_authority           | string          | Name of the administrative authority, Commission (for Union entities), or QTSP issuing the EAA/QEAA; or ISO 3166‑1 alpha‑2 where applicable.                                                                                                            |
+| issuing_country             | issuing_country             | string          | ISO 3166‑1 alpha‑2 code of the provider’s country/territory.                                                                                                                                                                                            |
+| location_status             | status                      | JSON Object     | See [Section 3.2.1](#321-attribute-status).                                                                                                                                                                                                             |
+| trust_anchor                | trust_anchor                | string (URI)    | URL of machine‑readable trust anchor as per Annex V/VII point h).                                                                                                                                                                                       |
 
 Selective Disclosure: Attributes of the EBW-OID SHALL NOT be selectively disclosable.
 
@@ -253,12 +253,12 @@ TODO: WE BUILD WP4 - EBW owner identification data task 3?
 
 
 Primary use cases:
-- Proving the legal identity of an organisation (holder) to a Relying Party in national and cross‑border digital services.
+- Proving the legal identity of an organisation (holder) to a Relying Party in national and cross‑border digital online services.
 - Establishing a trust context for additional legal‑person attestations that reference the EBW‑OID `id`.
 
 Relying Party obligations:
 - Verify the SD‑JWT VC signature and ensure the issuer is an authorised public body by validating the qualified certificate chain against the appropriate QTSP Trusted List (see Chapter 5).
-- Check freshness: validate `exp` and consider `iat` and policy‑defined maximum age.
+- Check freshness: validate `exp` and consider `iat`.
 - Apply revocation/status checks as defined in Chapter 6.
 - Where the transaction requires binding to a natural person representative, the RP SHOULD request and verify a PID for the representative in addition to the EBW‑OID, as per service policy and ARF Topic 12 (ARB_27).
 
