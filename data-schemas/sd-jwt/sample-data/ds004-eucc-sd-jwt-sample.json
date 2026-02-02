@@ -1,0 +1,75 @@
+{
+  "vct": "uri:eu.eudi.eucc.1",
+  "attestation_legal_category": "QEAA",
+  "issuing_authority": "Brønnøysundregistrene",
+  "issuing_authority_id": "974760673",
+  "issuing_country": "NO",
+  "issuing_jurisdiction": "NO",
+  "issuance_date": "2026-01-15T10:00:00Z",
+  "authentic_source_id": "974760673",
+  "authentic_source_name": "Brønnøysundregistrene",
+  "legal_person_name": "EUDI WALLET SOLUTIONS AS",
+  "legal_person_id": "NOFOR.987654321",
+  "legal_form_type": "Aksjeselskap (AS)",
+  "registration_member_state": "NO",
+  "registered_address": {
+    "full_address": "Storgata 1; 9008; Tromsø; NO",
+    "thorough_fare": "Storgata",
+    "locator_designator": "1",
+    "post_code": "9008",
+    "post_name": "Tromsø",
+    "admin_unit_level_1": "NO",
+    "admin_unit_level_2": "Troms"
+  },
+  "registration_date": "2020-05-20",
+  "share_capital": {
+    "amount": "30000",
+    "currency": "NOK"
+  },
+  "legal_person_status": "active",
+  "legal_person_activity": {
+    "code": "62.010",
+    "description": "Computer programming activities"
+  },
+  "digital_contact_point": {
+    "website": "https://www.example-eudi-wallet.no",
+    "email": "post@example-eudi-wallet.no"
+  },
+  "legal_representative": [
+    {
+      "full_name": "Lysende Blomst",
+      "date_of_birth": "1980-01-01",
+      "nationality": "Norwegian",
+      "signatory_rule": "alone"
+    },
+    {
+      "name": "PARENT HOLDING AS",
+      "id": "NOFOR.123456789",
+      "legal_form_type": "Aksjeselskap (AS)",
+      "signatory_rule": "alone"
+    }
+  ],
+  "trust_anchor": "https://trust.example.org/anchors/eidas",
+  "cnf": {
+    "jwk": {
+      "kty": "EC",
+      "crv": "P-256",
+      "x": "f83OJ3D2xF4wKJ1i8xWcQWfYVYVxG3lI8p3G5h1D2Vw",
+      "y": "x_FEzRu9H1lq3eV6K0U2f1u3a9eJXl7J8m2bQ9k4oZk",
+      "kid": "key-1",
+      "alg": "ES256"
+    }
+  },
+  "nbf": 1768471200,
+  "iat": 1768471200,
+  "exp": 1800010400,
+  "iss": "https://issuing-authority.example.no",
+  "sub": "did:example:legal-person:NO.987654321",
+  "jti": "b3f6f1f2-55a8-4d5f-9a0d-1a3b1a0d0c9e",
+  "status": {
+    "type": "status-list",
+    "status_list_credential": "https://issuer.example.no/status/1",
+    "status_list_index": 42,
+    "status_purpose": "revocation"
+  }
+}

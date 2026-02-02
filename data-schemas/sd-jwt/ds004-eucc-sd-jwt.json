@@ -1,0 +1,477 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EWC - EU Company Certificate",
+  "description": "Schema for EU Company Certificate - EWC WP3",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "vct": {
+      "type": "string",
+      "description": "Verifiable Credential Type. Base type is 'urn:eudi:eucc:1'. Domestic types MAY be of the form 'urn:eudi:eucc:<cc>:1'.",
+      "examples": [
+        "urn:eudi:eucc:1",
+        "urn:eudi:eucc:de:1"
+      ]
+    },
+    "issuing_authority": {
+      "description": "Name of issuer from the MS that issued the ODI instance",
+      "type": "string"
+    },
+    "issuing_authority_id": {
+      "description": "ODI Id of the issuing authority. (Business register identifier for BRIS)",
+      "type": "string"
+    },
+    "issuing_country": {
+      "description": "Alpha-2 country code, as defined in ISO 3166-1, of the issuing country or territory.",
+      "type": "string",
+      "pattern": "^[A-Z]{2}$"
+    },
+    "issuing_jurisdiction": {
+      "description": "As defined in ISO 3166-2:2020, of the issuing country or territory.",
+      "type": "string"
+    },
+    "issuance_date": {
+      "description": "Date and possibly time of issuance",
+      "type": "string",
+      "format": "date-time"
+    },
+    "authentic_source_id": {
+      "description": "ODI Id of the issuing authority. (Business register identifier for BRIS)",
+      "type": "string"
+    },
+    "authentic_source_name": {
+      "description": "Name of issuer from the MS that issued the ODI instance",
+      "type": "string"
+    },
+    "attestation_legal_category": {
+      "description": "Legal category of the attestation.",
+      "type": "string",
+      "enum": ["EAA", "PUB-EAA","QEAA"]
+    },
+    "legal_person_name": {
+      "description": "Official current legal person name as registered in the business register.",
+      "type": "string"
+    },
+    "legal_person_id": {
+      "description": "Unique id for organisations in EUID structure",
+      "type": "string"
+    },
+    "legal_form_type": {
+      "description": "Legal form of the company",
+      "type": "string"
+    },
+    "registration_member_state": {
+      "description": "Member State where the company is registered, Alpha-2 country code, as defined in ISO 3166-1",
+      "type": "string",
+      "pattern": "^[A-Z]{2}$"
+    },
+    "registered_address": {
+      "description": "Registered office of the company (full address or part of it)",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "care_of": {
+          "description": "Used when an address is at the address of another person or legal entity.",
+          "type": "string"
+        },
+        "full_address": {
+          "description": "The complete address written as a string, separated with \";\".",
+          "type": "string"
+        },
+        "thorough_fare": {
+          "title": "Thoroughfare",
+          "description": "The name of a passage or way through from one location to another.",
+          "type": "string"
+        },
+        "locator_designator": {
+          "description": "A number or a sequence of characters that uniquely identifies the locator within the relevant scope.",
+          "type": "string"
+        },
+        "post_code": {
+          "description": "The code created and maintained for postal purposes to identify a subdivision of addresses and postal delivery points.",
+          "type": "string"
+        },
+        "post_name": {
+          "description": "A name created and maintained for postal purposes to identify a subdivision of addresses and postal delivery points.",
+          "type": "string"
+        },
+        "post_office_box": {
+          "description": "A location designator for a postal delivery point at a post office, usually a number.",
+          "type": "string"
+        },
+        "locator_name": {
+          "description": "Proper noun(s) applied to the real world entity identified by the locator. The locator name could be the name of the property or complex, of the building or part of the building, or it could be the name of a room inside a building.",
+          "type": "string"
+        },
+        "admin_unit_level_1": {
+          "description": "The uppermost administrative unit for the address, almost always a country.",
+          "type": "string"
+        },
+        "admin_unit_level_2": {
+          "description": "The name of a secondary level/region of the address, usually a county, state or other such area that typically encompasses several localities.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "full_address"
+      ]
+    },
+    "registration_date": {
+      "description": "Date of registration of the company",
+      "type": "string",
+      "format": "date"
+    },
+    "share_capital": {
+      "description": "Amount of the capital subscribed with currency",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "amount": {
+          "description": "Amount of the capital subscribed",
+          "type": "string"
+        },
+        "currency": {
+          "description": "Currency code used of the capital subscribed, as defined in ISO 4217:2015",
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        }
+      },
+      "required": [
+        "amount",
+        "currency"
+      ]
+    },
+    "legal_person_status": {
+      "description": "Status of the company as defined in national law and where recorded in the national register",
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive"
+      ]
+    },
+    "legal_person_activity": {
+      "description": "Object of the company describing its main activity or activities, which must be expressed using the Statistical Classification of Economic Activities in the European Community (NACE)",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "description": "Legal person activity NACE code",
+          "type": "string"
+        },
+        "description": {
+          "description": "Short description of the legal person activity",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "description"
+      ]
+    },
+    "legal_person_duration": {
+      "description": "Duration of the company, where its duration is limited",
+      "type": "string",
+      "format": "date"
+    },
+    "digital_contact_point": {
+      "description": "Correspondence address of the company, such as electronic mail or website",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "website": {
+          "description": "Details of the company website",
+          "type": "string",
+          "format": "uri"
+        },
+        "email": {
+          "description": "Details of the company email",
+          "type": "string",
+          "format": "email"
+        }
+      }
+    },
+    "legal_representative": {
+      "description": "Information about any person authorized by the company to represent it alone or jointly",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/legal_representative"
+      }
+    },
+    "trust_anchor": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of machine‑readable trust anchor as per Annex V/VII point h).",
+      "examples": [
+        "https://trust.example.org/anchors/eidas"
+      ]
+    },
+    "cnf": {
+      "type": "object",
+      "description": "Key binding confirmation per SD-JWT VC.",
+      "additionalProperties": true,
+      "properties": {
+        "jwk": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "kty": {
+              "type": "string",
+              "examples": [
+                "EC",
+                "RSA"
+              ]
+            },
+            "crv": {
+              "type": "string",
+              "examples": [
+                "P-256"
+              ]
+            },
+            "x": {
+              "type": "string",
+              "examples": [
+                "f83OJ3D2xF4wKJ1i8xWcQWfYVYVxG3lI8p3G5h1D2Vw"
+              ]
+            },
+            "y": {
+              "type": "string",
+              "examples": [
+                "x_FEzRu9H1lq3eV6K0U2f1u3a9eJXl7J8m2bQ9k4oZk"
+              ]
+            },
+            "e": {
+              "type": "string",
+              "examples": [
+                "AQAB"
+              ]
+            },
+            "n": {
+              "type": "string",
+              "examples": [
+                "sXchp8G7uG0m7V9mZrGZb1hS0ZQyqZxZr7m2yq8tJv0"
+              ]
+            },
+            "kid": {
+              "type": "string",
+              "examples": [
+                "key-1"
+              ]
+            },
+            "alg": {
+              "type": "string",
+              "examples": [
+                "ES256",
+                "RS256"
+              ]
+            }
+          },
+          "required": [
+            "kty"
+          ],
+          "examples": [
+            {
+              "kty": "EC",
+              "crv": "P-256",
+              "x": "f83OJ3D2xF4wKJ1i8xWcQWfYVYVxG3lI8p3G5h1D2Vw",
+              "y": "x_FEzRu9H1lq3eV6K0U2f1u3a9eJXl7J8m2bQ9k4oZk",
+              "kid": "key-1",
+              "alg": "ES256"
+            }
+          ]
+        }
+      },
+      "required": [
+        "jwk"
+      ],
+      "examples": [
+        {
+          "jwk": {
+            "kty": "EC",
+            "crv": "P-256",
+            "x": "f83OJ3D2xF4wKJ1i8xWcQWfYVYVxG3lI8p3G5h1D2Vw",
+            "y": "x_FEzRu9H1lq3eV6K0U2f1u3a9eJXl7J8m2bQ9k4oZk",
+            "kid": "key-1",
+            "alg": "ES256"
+          }
+        }
+      ]
+    },
+    "nbf": {
+      "type": "integer",
+      "description": "Not-before (epoch seconds).",
+      "examples": [
+        1767139200
+      ]
+    },
+    "iat": {
+      "type": "integer",
+      "description": "Issued-at (epoch seconds).",
+      "examples": [
+        1767135600
+      ]
+    },
+    "exp": {
+      "type": "integer",
+      "description": "Expiry (epoch seconds).",
+      "examples": [
+        1767740400
+      ]
+    },
+    "iss": {
+      "type": "string",
+      "description": "Issuer identifier (URL or DID).",
+      "examples": [
+        "https://lpid-issuer.example.no"
+      ]
+    },
+    "sub": {
+      "type": "string",
+      "description": "Subject identifier of the holder (e.g., DID).",
+      "examples": [
+        "did:example:legal-person:NOFOR.123456789"
+      ]
+    },
+    "jti": {
+      "type": "string",
+      "description": "JWT ID.",
+      "examples": [
+        "b3f6f1f2-55a8-4d5f-9a0d-1a3b1a0d0c9e"
+      ]
+    },
+    "status": {
+      "type": "object",
+      "description": "Credential status following SD-JWT VC Status List.",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Status mechanism type. For SD-JWT VC Status List this SHALL be 'status-list'."
+        },
+        "status_list_credential": {
+          "type": "string",
+          "format": "uri",
+          "description": "URI of the Status List Credential that contains the bitstring indicating status."
+        },
+        "status_list_index": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Zero-based index into the status list bitstring for this credential."
+        },
+        "status_purpose": {
+          "type": "string",
+          "description": "Purpose of the status entry. For PID this is 'revocation'."
+        }
+      },
+      "required": [
+        "type",
+        "status_list_credential",
+        "status_list_index",
+        "status_purpose"
+      ],
+      "examples": [
+        {
+          "type": "status-list",
+          "status_list_credential": "https://issuer.example.com/status/1",
+          "status_list_index": 42,
+          "status_purpose": "revocation"
+        }
+      ]
+    }
+  },
+  "required": [
+    "legal_person_name",
+    "legal_person_id",
+    "legal_form_type",
+    "registration_member_state",
+    "registered_address",
+    "registration_date",
+    "legal_person_status",
+    "legal_person_activity",
+    "issuing_authority",
+    "issuing_authority_id",
+    "issuing_country",
+    "issuance_date",
+    "authentic_source_id",
+    "authentic_source_name",
+    "legal_representative"
+  ],
+  "$defs": {
+    "legal_representative": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/legal_representative.natural_person"
+        },
+        {
+          "$ref": "#/$defs/legal_representative.legal_person"
+        }
+      ]
+    },
+    "legal_representative.natural_person": {
+      "description": "Details about the representative of the company if incarnated by a natural person",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "full_name": {
+          "description": "Full name of the natural person representing the company",
+          "type": "string"
+        },
+        "date_of_birth": {
+          "description": "Date of birth of the natural person representing the company",
+          "type": "string",
+          "format": "date"
+        },
+        "nationality": {
+          "description": "Nationality of the natural person representing the company",
+          "type": "string"
+        },
+        "signatory_rule": {
+          "description": "Information if the representative can engage the company alone or jointly",
+          "type": "string",
+          "enum": [
+            "alone",
+            "joint"
+          ]
+        }
+      },
+      "required": [
+        "full_name",
+        "date_of_birth",
+        "signatory_rule"
+      ]
+    },
+    "legal_representative.legal_person": {
+      "description": "Details about the representative of the company if incarnated by a legal person",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "description": "Official current legal person name as registered in the business register.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Unique id for organisations in EUID structure",
+          "type": "string"
+        },
+        "legal_form_type": {
+          "description": "Legal form of the company",
+          "type": "string"
+        },
+        "signatory_rule": {
+          "description": "Information if the representative can engage the company alone or jointly",
+          "type": "string",
+          "enum": [
+            "alone",
+            "joint"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "id",
+        "legal_form_type",
+        "signatory_rule"
+      ]
+    }
+  }
+}
