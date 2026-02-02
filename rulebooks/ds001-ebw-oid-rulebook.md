@@ -100,7 +100,7 @@ All data identifiers and definitions in this chapter are independent of any enco
 
 | **Data Identifier**  | **Definition**                                                                                                                                                                                                                                                                             |
 |----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| name                 | The official name of the EBW owner (economic operator or public sector body), from the relevant register or official record.                                                                                                                                                               |
+| legal_name                 | The official name of the EBW owner (economic operator or public sector body), from the relevant register or official record.                                                                                                                                                               |
 | id                   | The relevant unique identifier attributed in accordance with Article 9 of EWB (**WEBUILD specific** EUID where available, otherwise a similar constructed, unique per issuer identifier. <Countrycode ISO 3166-1 alpha-2><Issuer-reference>.<unique identificator> eks. SEBOLREG.123456789 |
 
 
