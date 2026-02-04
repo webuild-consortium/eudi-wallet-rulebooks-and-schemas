@@ -1,0 +1,21 @@
+{
+  "docType": "eu.webuildconsortium.helloworld.v1",
+  "issuerSigned": {
+    "nameSpaces": {
+      "eu.webuildconsortium.helloworld.v1": [
+        { "elementIdentifier": "message", "elementValue": "Hello World!" },
+        { "elementIdentifier": "attestation_legal_category", "elementValue": "QEAA" },
+        { "elementIdentifier": "issuing_authority", "elementValue": "https://issuer.webuildconsortium.eu" },
+        { "elementIdentifier": "issuer_legal_id", "elementValue": "LEI:1234567890" },
+        { "elementIdentifier": "trust_anchor_url", "elementValue": "https://trustedlist.eu/issuer" },
+        { "elementIdentifier": "attestation_scheme", "elementValue": "QEAA:HelloWorld" }
+      ]
+    },
+    "validityInfo": {
+      "signed": 1759838400,
+      "validFrom": 1759838400,
+      "validUntil": 1759881599
+    },
+    "issuerAuth": "<COSE_Sign1 placeholder for QTSP issuer signature>"
+  }
+}
