@@ -1,0 +1,14 @@
+{
+  "vct": "eu.webuildconsortium.helloworld.v1",
+  "iss": "https://issuer.webuildconsortium.eu",
+  "iat": 1760025600,
+  "exp": 1760111999,
+  "attestation_legal_category": "QEAA",
+  "issuer_legal_id": "LEI:1234567890",
+  "trust_anchor_url": "https://trustedlist.eu/issuer",
+  "attestation_scheme": "QEAA:HelloWorld",
+  "_sd": [
+    "4vTz1zc7U-O1yQpltxsQ4xbB07Gefx4fX06PPmtaP4w"
+  ],
+  "_sd_alg": "sha-256"
+}
