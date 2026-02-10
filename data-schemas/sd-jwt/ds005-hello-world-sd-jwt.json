@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Hello World Attestation SD-JWT Schema (Issuance or Presentation)",
+  "description": "Schema for the SD-JWT issuance payload and presentation wrapper of the Hello World Attestation (HWA).",
+  "oneOf": [
+    { "$ref": "#/$defs/issuance" },
+    { "$ref": "#/$defs/presentation" }
+  ],
+  "$defs": {
+    "issuance": {
+      "type": "object",
+      "version": "1.0.0",
+      "properties": {
+        "vct": { "type": "string", "const": "eu.webuildconsortium.helloworld.v1" },
+        "iss": { "type": "string", "format": "uri", "$comment": "Maps to issuing_authority" },
+        "iat": { "type": "number", "$comment": "Epoch seconds, maps to issuance_date" },
+        "exp": { "type": "number", "$comment": "Epoch seconds, maps to expiry_date, ≤24h after iat" },
+        "message": { "type": "string", "const": "Hello World!", "$comment": "MUST be disclosable in SD-JWT" },
+        "attestation_legal_category": { "type": "string", "const": "QEAA", "$comment": "MUST NOT be disclosable in SD-JWT" },
+        "issuer_legal_id": { "type": "string", "$comment": "MUST NOT be disclosable in SD-JWT" },
+        "trust_anchor_url": { "type": "string", "format": "uri", "$comment": "MUST NOT be disclosable in SD-JWT" },
+        "attestation_scheme": { "type": "string", "const": "QEAA:HelloWorld", "$comment": "MUST NOT be disclosable in SD-JWT" },
+        "_sd": {
+          "type": "array",
+          "items": { "type": "string" },
+          "$comment": "Contains SHA-256 digest of disclosable claim (message)"
+        },
+        "_sd_alg": { "type": "string", "const": "sha-256", "$comment": "Hashing algorithm for SD-JWT disclosures" }
+      },
+      "required": [
+        "vct",
+        "iss",
+        "iat",
+        "exp",
+        "attestation_legal_category",
+        "issuer_legal_id",
+        "trust_anchor_url",
+        "attestation_scheme",
+        "_sd",
+        "_sd_alg"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        { "$comment": "For SD-JWT VC: message is selectively disclosable; other claims are not" },
+        { "$comment": "exp must be ≤24h after iat (enforce in implementation)" },
+        { "$comment": "_sd contains digest of message disclosure, e.g., SHA-256 of ['fixed-salt-for-demo', 'message', 'Hello World!']" }
+      ]
+    },
+    "presentation": {
+      "type": "object",
+      "version": "1.0.0",
+      "properties": {
+        "sd_jwt": {
+          "type": "string",
+          "$comment": "Issued SD-JWT string (header.payload.signature)"
+        },
+        "disclosures": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "$comment": "Array of disclosure strings for selectively disclosed claims"
+        },
+        "kb_jwt": {
+          "type": ["string", "null"],
+          "$comment": "Optional key-binding JWT; null if not used"
+        }
+      },
+      "required": ["sd_jwt", "disclosures", "kb_jwt"],
+      "additionalProperties": false
+    }
+  }
+}
