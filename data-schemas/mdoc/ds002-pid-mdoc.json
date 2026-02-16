@@ -194,8 +194,10 @@
     },
     "issuing_authority": {
       "$ref": "#/$defs/cddl_tstr",
-      "description": "Name of the administrative authority that issued the PID, or ISO 3166 alpha-2 country code if no separate authority.",
-      "examples": ["Stadt München"]
+      "description": "The ISO 3166-1 alpha-2 country code of the respective Member State that issued the PID.",
+      "minLength": 2,
+      "maxLength": 2,
+      "examples": ["DE"]
     },
     "issuing_country": {
       "$ref": "#/$defs/cddl_tstr",

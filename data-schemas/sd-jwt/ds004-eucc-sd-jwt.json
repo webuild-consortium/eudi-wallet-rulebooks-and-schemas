@@ -14,8 +14,11 @@
       ]
     },
     "issuing_authority": {
-      "description": "Name of issuer from the MS that issued the ODI instance",
-      "type": "string"
+      "description": "The ISO 3166-1 alpha-2 country code of the respective Member State that issued the EUCC.",
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2,
+      "examples": ["NO"]
     },
     "issuing_authority_id": {
       "description": "ODI Id of the issuing authority. (Business register identifier for BRIS)",

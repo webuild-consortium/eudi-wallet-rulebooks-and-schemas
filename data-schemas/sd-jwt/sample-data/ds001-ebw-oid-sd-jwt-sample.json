@@ -4,7 +4,7 @@
   "name": "Example AS",
   "attestation_legal_category": "PUB-EAA",
   "date_of_expiry": "2027-12-31",
-  "issuing_authority": "Brønnøysundregistrene",
+  "issuing_authority": "NO",
   "issuing_country": "NO",
   "status": {
     "type": "status-list",

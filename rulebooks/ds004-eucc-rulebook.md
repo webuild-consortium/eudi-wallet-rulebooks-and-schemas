@@ -205,7 +205,7 @@ There is currently no open standard for addresses. As such, the definitions from
 | **Data Identifier**  | **Definition**                                                                                                                                                                                           |
 |----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | expiry_date          | Date (and if possible time) when the attestation will expire. Does not need to be an atribute and can be covered by credentialformat metadata, such as for example the "exp" field on the sd-jwt format. |
-| issuing_authority    | Name of the administrative authority that issued the eucc, or the ISO 3166 alpha-2 country code of the respective Member State if there is no separate authority entitled to issue the EUCC.             |
+| issuing_authority    | The ISO 3166-1 alpha-2 country code of the respective Member State that issued the EUCC.                                                                                                                |
 | issuing_country      | Alpha-2 country code, as specified in ISO 3166-1, of the country or territory of the provider of the person identification data.                                                                         |
 
 ### 2.8 Conditional metadata 
@@ -238,7 +238,7 @@ The . notation is used to indicate the nesting of attributes.
 | **Data Identifier**                                | **Attribute identifier**                          | **Encoding format** | **Reference/Notes**                                                        |
 |----------------------------------------------------|---------------------------------------------------|---------------------|----------------------------------------------------------------------------|
 | attestation_legal_category                         | attestation_legal_category                        | string              | One of EAA, Pub-EAA, QEAA as defined by eIDAS 2                            |
-| issuing_authority                                  | iss                                               | string              | RFC 7519 / Section 2.6                                                     |
+| issuing_authority                                  | issuing_authority                                | string              | The ISO 3166-1 alpha-2 country code of the respective Member State that issued the EUCC.                  |
 | expiry_date                                        | exp                                               | number              | RFC 7519 / Section 2.6 (Unix timestamp)                                    |
 | issuing_country                                    | issuing_country                                   | string              | ISO 3166-1 alpha-2                                                         |
 | legal_person_name                                  | legal_person_name                                 | string              | Official current legal person name as registered in the business register. |

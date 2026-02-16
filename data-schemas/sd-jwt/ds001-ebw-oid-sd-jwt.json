@@ -46,9 +46,11 @@
     },
     "issuing_authority": {
       "type": "string",
-      "description": "Name of the administrative authority, Commission (for Union entities), or QTSP issuing the EAA/QEAA; or ISO 3166-1 alpha-2 where applicable.",
+      "description": "The ISO 3166-1 alpha-2 country code of the Member State that issued the EBWOID.",
+      "minLength": 2,
+      "maxLength": 2,
       "examples": [
-        "Brønnøysundregistrene"
+        "NO"
       ]
     },
     "issuing_country": {
