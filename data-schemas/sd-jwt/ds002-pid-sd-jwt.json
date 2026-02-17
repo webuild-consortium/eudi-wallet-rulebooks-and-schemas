@@ -273,6 +273,11 @@
         "DE-BY"
       ]
     },
+    "attestation_legal_category": {
+      "type": "string",
+      "const": "PID",
+      "description": "Indication that this attestation has been issued as a PID, as required by ARB_11 in Topic 12 of Annex 2 of the ARF."
+    },
     "trust_anchor": {
       "type": "string",
       "format": "uri",
@@ -460,6 +465,7 @@
     "birthdate",
     "place_of_birth",
     "nationalities",
+    "attestation_legal_category",
     "date_of_expiry",
     "issuing_authority",
     "issuing_country",
