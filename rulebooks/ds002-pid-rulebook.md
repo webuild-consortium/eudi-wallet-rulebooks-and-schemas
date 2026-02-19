@@ -404,7 +404,7 @@ EXAMPLE: The following example shows the payload of a PID in SD-JWT VC format be
 ```json
 {
     "vct": "urn:eudi:pid:de:1",
-    "attestation_legal_category": "PID",
+    "attestation_legal_category": "PUB-EAA",
 
     "given_name": "Jean",
     "family_name": "Dupont",
