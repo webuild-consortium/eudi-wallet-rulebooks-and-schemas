@@ -275,7 +275,7 @@
     },
     "attestation_legal_category": {
       "type": "string",
-      "const": "PID",
+      "const": "PUB-EAA",
       "description": "Indication of the attestation legal category, one of QEAA, PUB-EAA or EAA. as required by  ARB_25 in Topic 12 of Annex 2 of the ARF."
     },
     "trust_anchor": {
