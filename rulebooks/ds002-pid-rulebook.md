@@ -456,7 +456,57 @@ TODO: WE BUILD WP4 - PID/EBW-OID group task 3?
 
 ## 5 Trust anchors
 
-TODO: WE BUILD WP4 - Trust Registry Infrastucture / Architecture group?
+This chapter specifies how trust anchors relevant to PID are distributed and looked up. Two trust relationships are in scope:
+- PID authenticity - the RP verifies the PID signature.
+- RP authenticity - the Wallet Unit authenticates the RP before presenting PID attributes.
+
+For PID and QEAAs, trust anchors of the Provider are obtained from a List of Trusted Entities (LoTE) or Trusted List. For PuB-EAAs, the RP uses the QTSP Trusted List to validate the certificate chain of the PuB-EAA Provider certificate. The applicable rulebook specifies the mechanisms enabling trust anchor distribution and lookup for non-qualified cases.
+
+Trust anchor distribution:
+- PID Provider trust anchors SHALL be distributed via LoTE following the PID Provider registration and notification process, where applicable.
+- Qualified trust anchors (QTSP trust anchors) SHALL be obtained via eIDAS Trusted Lists (and their corresponding publication mechanisms).
+- Access Certificate Authority trust anchors (used for RP authentication towards the Wallet Unit) SHALL be distributed via LoTE.
+- PID Providers SHOULD populate the optional PID metadata `trust_anchor` (Section 2.6) with at least one machine-readable pointer to the applicable trust anchor source (LoTE entry, Trusted List, or an index pointing to the authoritative source).
+
+Trust anchor lookup mechanisms:
+- RPs and Wallet Units SHALL support trust anchor lookup based on:
+  - `issuing_country` (Section 2.5) for selecting the relevant national LoTE / Trusted List context, and
+  - the optional `trust_anchor` metadata (Section 2.6) as a machine-readable pointer when present.
+- RPs and Wallet Units SHOULD cache trust anchor artefacts and apply an update policy appropriate for the deployment, including re-fetching when a pointer changes or when cached artefacts expire.
+
+Verification steps - RP verifies PID authenticity:
+1) Determine the legal category of the PID using `attestation_legal_category` (Section 2.5).
+2) Verify the PID signature according to Chapter 3.
+3) Obtain the relevant trust anchor(s):
+   - For PID or QEAA, obtain the Provider trust anchor from the applicable LoTE / Trusted List.
+   - For PuB-EAA, validate the PuB-EAA Provider certificate chain up to the QTSP trust anchor from the QTSP Trusted List.
+   - For non-qualified EAA cases, obtain the applicable domain trust anchor using the mechanism defined below (WE BUILD profile).
+4) Validate the trust chain (including intermediate certificates where used) and validate revocation/status information as specified in Chapter 6.
+5) Where a trust anchor source is retrieved dynamically, validate the authenticity and integrity of the retrieved artefact before use (for example, using a signed LoTE/Trusted List artefact or an authenticated distribution channel).
+
+Verification steps - Wallet Unit authenticates the RP (precondition for PID presentation):
+1) Obtain the trust anchor of the Access Certificate Authority from the applicable LoTE.
+2) Validate the RP access certificate chain included in the presentation request up to the Access CA trust anchor.
+3) Validate revocation/status of certificates in the chain as required by the applicable ecosystem rules and Chapter 6.
+4) Proceed to User approval only after successful RP authentication.
+
+WE BUILD specific profile and extensions:
+- WE BUILD SHALL support a machine-readable LoTE endpoint (or equivalent distribution mechanism) that contains:
+  - trust anchors for PID Providers participating in WE BUILD, and
+  - trust anchors for the Access Certificate Authorities used by WE BUILD participants.
+- The WE BUILD LoTE SHOULD be structured so that entries can be resolved by `issuing_country` and entity identifier, and SHOULD support inclusion of pointers to authoritative national LoTE / Trusted List sources where available.
+- Wallet Units and RPs in WE BUILD SHALL be able to resolve trust anchors using either:
+  - the `trust_anchor` metadata carried in the PID, or
+  - a pre-configured WE BUILD LoTE entry point based on `issuing_country`.
+
+Practical examples (illustrative):
+- Example 1 - PID includes `trust_anchor` pointing to a LoTE entry:
+  - `trust_anchor`: `https://lote.example.org/XX/pid-providers.json`
+  - RP retrieves the LoTE artefact, selects the PID Provider entry, and uses the contained trust anchor to validate the PID Provider signing chain.
+- Example 2 - Wallet Unit authenticates an RP:
+  - Wallet Unit retrieves the Access CA trust anchor for `issuing_country = "XX"` from LoTE.
+  - RP includes its access certificate and intermediate certificates in the request.
+  - Wallet Unit validates the chain up to the Access CA trust anchor before showing the request to the User.
 
 ## 6 Revocation
 
