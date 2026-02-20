@@ -111,7 +111,7 @@ All data identifiers and definitions in this chapter are independent of any enco
 
 | **Data Identifier**         | **Definition**                                                                                                                                                    |
 |-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| issuing_authority           | Name of the administrative authority or qualified trust service provider that issued the EBWOID, or the ISO 3166‑1 alpha‑2 of the Member State where applicable. |
+| issuing_authority           | The ISO 3166‑1 alpha‑2 country code of the Member State that issued the EBWOID. |
 | issuing_country             | Alpha‑2 country code, as specified in ISO 3166‑1, of the country or territory of the provider of the EBWOID.                                                     |
 | attestation_legal_category  | The type of attestation category. (Pub-EAA/QEAA)                                                                                                                  |
 
@@ -146,7 +146,7 @@ Claim names and disclosure policy (aligned with Chapter 2 attributes):
 | name                        | name                        | string          | Official name from relevant register or official record.                                                                                                                                                                                                                                |
 | attestation_legal_category  | attestation_legal_category  | string          | The type of attestation category. Can be one of QEAA or PUB-EAA                                                                                                                                                                                                                         | 
 | expiry_date                 | date_of_expiry              | string          | Addministrative expiry date given on ISO 8601-1  date fomat. YYYY‑MM‑DD ]                                                                                                                                                                                                               |
-| issuing_authority           | issuing_authority           | string          | Name of the administrative authority, Commission (for Union entities), or QTSP issuing the EAA/QEAA; or ISO 3166‑1 alpha‑2 where applicable.                                                                                                                                            |
+| issuing_authority           | issuing_authority           | string          | The ISO 3166‑1 alpha‑2 country code of the Member State that issued the EBWOID.                                                                                                                                            |
 | issuing_country             | issuing_country             | string          | ISO 3166‑1 alpha‑2 code of the provider’s country/territory.                                                                                                                                                                                                                            |
 | location_status             | status                      | JSON Object     | See [Section 3.2.1](#321-attribute-status).                                                                                                                                                                                                                                             |
 | trust_anchor                | trust_anchor                | string (URI)    | URL of machine‑readable trust anchor as per Annex V/VII point h).                                                                                                                                                                                                                       |
@@ -186,7 +186,7 @@ Illustrative examples:
   "id": "NOFOR.123456789",
   "name": "Example AS",
   "attestation_legal_category": "PUB-EAA",
-  "issuing_authority": "Brønnøysundregistrene",
+  "issuing_authority": "NO",
   "issuing_country": "NO",
   "date_of_expiry": "2026-12-31",
   "trust_anchor": "https://tl.eidas.europa.eu/tl-browser/#/",

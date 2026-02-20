@@ -240,8 +240,11 @@
     },
     "issuing_authority": {
       "type": "string",
+      "description": "The ISO 3166-1 alpha-2 country code of the respective Member State that issued the PID.",
+      "minLength": 2,
+      "maxLength": 2,
       "examples": [
-        "Stadt München"
+        "DE"
       ]
     },
     "issuing_country": {
