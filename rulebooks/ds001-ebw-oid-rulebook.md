@@ -213,8 +213,6 @@ Note: Additional technical claims are not shown here, including
 references to the issuer and more.
 
 
-
-
 ## 3.3 W3C Verifiable Credentials Data Model-based encoding
 
 TODO: Add W3C VC encoding.
@@ -231,8 +229,6 @@ The EBW-OID attestation serves diverse types of EBW owners across European digit
 EBW-OID is profiled for **SD-JWT VC** and **W3C VCDM** because these formats:
 - Are mandated or recommended by the ARF and applicable implementing acts for electronic attestations of attributes.
 - Support selective disclosure (SD-JWT VC) and linked-data integrity (W3C VCDM), enabling both privacy and semantical presentations.
-
-
 
 Primary use cases:
 - Proving the legal identity of an organisation (holder) to a Relying Party in national and cross‑border digital online services.
@@ -253,9 +249,6 @@ Transactional data:
 
 ## 5 Trust anchors
 
-TODO: WE BUILD WP4 - Trust Registry Infrastucture / Architecture group? 
-
-
 For EBW‑OID as an PUB-EAA/QEAA, Relying Parties SHALL verify the EBW‑OID using the issuer credential:
 - Public‑body issuer certificate issued by a Qualified Trust Service Provider (QTSP) when provided by or on behalf of a public sector body responsible for an authentic source;
 - Qualified electronic attestation of attributes when provided by a QTSP; or
@@ -269,9 +262,6 @@ Verification steps:
 4) Use the `trust_list_location` metadata to discover the appropriate Trusted List or machine‑readable pointer.
 
 Issuers MAY use intermediate signing certificates. RPs SHALL handle such chains. The trust model is equivalent to Annex VII for PuB‑EAA.
-
-
-
 
 ## 6 Revocation
 
